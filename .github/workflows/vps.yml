@@ -1,0 +1,28 @@
+name: Ubuntu VPS Environment
+
+on:
+  workflow_dispatch:
+
+jobs:
+  ubuntu:
+    runs-on: ubuntu-22.04
+    timeout-minutes: 15
+
+    steps:
+      - name: Prepare Ubuntu
+        run: |
+          sudo apt update
+          sudo apt install -y curl wget git python3 python3-pip openssh-client
+
+      - name: Show System Information
+        run: |
+          echo "Ubuntu Environment Ready"
+          uname -a
+          lsb_release -a
+          free -h
+          df -h
+
+      - name: Keep Job Running
+        run: |
+          echo "Environment started"
+          sleep 300
